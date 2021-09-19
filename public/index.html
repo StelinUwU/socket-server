@@ -15,28 +15,9 @@
     <title>MiniChat</title>
   </head>
   <body class="container">
-    <h1 class="mt-5">MiniChat</h1>
+    <h1 class="mt-5">Acceso denegado😳</h1>
     <hr />
-    <form id="miFormulario">
-      <div class="row">
-        <div class="col-8">
-          <input
-            type="text"
-            id="txtMensaje"
-            placeholder="Mensaje"
-            class="form-control"
-          />
-        </div>
-        <div class="col-4">
-          <button class="btn btn-primary">Enviar</button>
-        </div>
-      </div>
-    </form>
-    <div class="row">
-      <div class="col">
-        <ul id="misMensajes" class="mt-2"></ul>
-      </div>
-    </div>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"
       integrity="sha512-WL6WGKMPBiM9PnHRYIn5YEtq0Z8XP4fkVb4qy7PP4vhmYQErJ/dySyXuFIMDf1eEYCXCrQrMJfkNwKc9gsjTjA=="
@@ -44,31 +25,14 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-      const socket = io("https://stn-react-socket-server.herokuapp.com/");
+      const socket = io("http://localhost:8080");
 
-      //Referencias al DOM
-      const form = document.querySelector("#miFormulario");
-      const mensajes = document.querySelector("#misMensajes");
-      const txtMensaje = document.querySelector("#txtMensaje");
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const msg = txtMensaje.value;
-        socket.emit("mensaje-to-server", { msg });
-      });
+      //Para emitir
+      /*   socket.emit("mensaje-to-server", { msg }); */
 
       socket.on("mensaje-from-server", (data) => {
-        mensajes.innerHTML += `<li>${data.msg}</li>`;
+        //Callback a ejecutar
       });
-
-      /*    socket.on("mensaje-bienvenida", (data) => {
-        console.log("El servidor emitió una wea");
-        console.log(data);
-      });
- */
-      /*       setTimeout(() => {
-        socket.emit("mensaje-cliente", { msg: "cliente", nombre: "Stelin" });
-      }, 2000); */
     </script>
   </body>
 </html>
